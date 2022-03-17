@@ -12,8 +12,38 @@ void main() {
       
         primarySwatch: Colors.blue,
       ),
-      home: const LoginView(),
+      home: const HomePage(),
     ),
   );
   
+}
+
+class HomePage extends StatelessWidget {
+  const HomePage({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Welcome'),
+      ),
+    body: FutureBuilder(
+      //future: Firebase.initializeApp(
+        //options: DefaultFirebaseOptions.currentPlatform,
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.done:
+              return const Text('Done');
+            default:
+              return const Text('Loading...');
+          }
+        },
+      ),
+      );
+      
+     
+    
+      
+    
+  }
 }
